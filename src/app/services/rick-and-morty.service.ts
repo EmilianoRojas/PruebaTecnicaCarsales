@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EpisodeResponse } from '../models/episode-response.model';
+import { Episode } from '../models/episode.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,11 @@ export class RickAndMortyService {
 
   constructor(private http: HttpClient) { }
 
-  getEpisodes(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}episode`);
+  getEpisodes(): Observable<EpisodeResponse> {
+    return this.http.get<EpisodeResponse>(`${this.apiUrl}episode`);
   }
 
-  getEpisode(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}episode/${id}`);
+  getEpisode(id: number): Observable<Episode> {
+    return this.http.get<Episode>(`${this.apiUrl}episode/${id}`);
   }
 }
