@@ -1,1 +1,7 @@
 <app-episode-table [episodes]="episodes$"></app-episode-table>
+<mat-paginator
+  [length]="episodeResponse?.info?.count"
+  [pageSize]="pageSize"
+  (page)="onPageChange($event)"
+  [pageIndex]="currentPage - 1"
+></mat-paginator>

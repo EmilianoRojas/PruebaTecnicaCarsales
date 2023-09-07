@@ -13,8 +13,8 @@ export class RickAndMortyService {
 
   constructor(private http: HttpClient) { }
 
-  getEpisodes(): Observable<EpisodeResponse> {
-    return this.http.get<EpisodeResponse>(`${this.apiUrl}episode`);
+  getEpisodes(page: number): Observable<EpisodeResponse> {
+    return this.http.get<EpisodeResponse>(`${this.apiUrl}episode?page=${page}`);
   }
 
   getEpisode(id: number): Observable<Episode> {
