@@ -1,3 +1,22 @@
 mat-card{
     margin: 50px;
 }
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.character-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.character {
+  text-align: center;
+  margin: 5px;
+}

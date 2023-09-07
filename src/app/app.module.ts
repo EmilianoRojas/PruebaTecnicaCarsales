@@ -14,6 +14,7 @@ import { EpisodeTableComponent } from './components/episode-table/episode-table.
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatCardModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
   ],
   providers: [],

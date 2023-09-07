@@ -1,4 +1,4 @@
-<mat-card *ngIf="episode$ | async as episode">
+<mat-card *ngIf="episode$ | async as episode" class="description">
   <mat-card-header>
     <mat-card-title>
       <h2>{{ episode.name }}</h2>
@@ -9,3 +9,19 @@
     <p>Episodio: {{ episode.episode }}</p>
   </mat-card-content>
 </mat-card>
+
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Characters in this episode:</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="character-container">
+    <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+    <mat-card *ngFor="let character of (characters$ | async)" class="character">
+      <img [src]="character.image" alt="{{ character.name }} Image" >
+      <mat-card-title>{{ character.name }}</mat-card-title>
+    </mat-card>
+  </div>
+</mat-card>
+

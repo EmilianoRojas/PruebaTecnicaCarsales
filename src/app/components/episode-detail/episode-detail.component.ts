@@ -1,8 +1,8 @@
-// episode-detail.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Character } from 'src/app/models/character.model';
 import { Episode } from 'src/app/models/episode.model';
 import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
 
@@ -12,7 +12,9 @@ import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
   styleUrls: ['./episode-detail.component.css']
 })
 export class EpisodeDetailComponent implements OnInit {
-  episode$!: Observable<Episode>;
+  episode$ = new Observable<Episode>();
+  characters$ = new Observable<Character[]>(); 
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,18 +22,37 @@ export class EpisodeDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    this.route.params.subscribe(params  => {
-      if (params['id']) {
-        const episodeId = params['id']; 
-        this.episode$ = this.rickAndMortyService.getEpisode(episodeId);
+    this.episode$ = this.route.params.pipe(
+      switchMap(params => {
+        if (params['id']) {
+          const episodeId = params['id'];
+          return this.rickAndMortyService.getEpisode(episodeId);
+        }
+        return []
+      })
 
-        this.episode$.subscribe((episode: Episode) => {
-          console.log(episode);
-        });
-      } 
+    );
+
+    this.characters$ = this.episode$.pipe(
+      switchMap(episode => {
+        if (episode && episode.characters && episode.characters.length > 0) {
+          const characterIds = episode.characters.map(url =>
+            this.extractCharacterIdFromUrl(url)
+          );
+          return this.rickAndMortyService.getMultipleCharacters(characterIds);
+        }
+        return [];
+      })
+    );
+
+    this.characters$.subscribe(() => {
+      this.isLoading = false;
     });
-    
   }
 
+  private extractCharacterIdFromUrl(url: string): number {
+    // Extrae el ID del personaje de la URL
+    const parts = url.split('/');
+    return parseInt(parts[parts.length - 1], 10);
+  }
 }

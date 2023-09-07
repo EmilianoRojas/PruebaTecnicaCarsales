@@ -4,7 +4,7 @@ import { EpisodeDetailComponent } from './components/episode-detail/episode-deta
 import { EpisodeListComponent } from './components/episode-list/episode-list.component';
 
 const routes: Routes = [
-  { path: 'episodes', component: EpisodeListComponent },
+  { path: '', component: EpisodeListComponent },
   { path: 'episode/:id', component: EpisodeDetailComponent },
 ];
 

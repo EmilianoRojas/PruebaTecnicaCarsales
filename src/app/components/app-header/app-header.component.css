@@ -21,15 +21,14 @@ nav ul li a {
 }
 
 .mat-toolbar {
-  color: white; /* Color del texto */
-  padding: 10px; /* Espaciado interno */
+  color: white; 
+  padding: 10px; 
 }
 
 .spacer {
-  flex: 1; /* Utiliza flexbox para ocupar todo el espacio disponible */
+  flex: 1; 
 }
 
-/* Los botones en la barra de herramientas se alinearán a la derecha */
 .mat-toolbar-row {
   justify-content: flex-end;
 }
