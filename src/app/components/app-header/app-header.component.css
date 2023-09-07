@@ -1,22 +1,35 @@
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mat-toolbar {
+  color: white; /* Color del texto */
+  padding: 10px; /* Espaciado interno */
+}
+
+.spacer {
+  flex: 1; /* Utiliza flexbox para ocupar todo el espacio disponible */
+}
+
+/* Los botones en la barra de herramientas se alinearán a la derecha */
+.mat-toolbar-row {
+  justify-content: flex-end;
+}
