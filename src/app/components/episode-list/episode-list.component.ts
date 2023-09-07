@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of, catchError } from 'rxjs';
+import { EpisodeResponse } from 'src/app/models/episode-response.model';
 import { Episode } from 'src/app/models/episode.model';
 import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
 
@@ -16,8 +17,10 @@ export class EpisodeListComponent implements OnInit {
 
   ngOnInit() {
     this.episodes$ = this.rickAndMortyService.getEpisodes()
-    .pipe(
-      map(response => response.results)
-    );
+      .pipe(
+        // Mapea la respuesta a un arreglo de episodios si es necesario
+        map((response: EpisodeResponse) => response.results),
+        catchError(() => of([])) // Maneja errores devolviendo un arreglo vacío
+      );
   }
 }

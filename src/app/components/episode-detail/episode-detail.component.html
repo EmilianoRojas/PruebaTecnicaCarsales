@@ -1,8 +1,11 @@
-<div class="episode-detail" *ngIf="episode$ | async as episode; else loading">
-    <h2>{{ episode.name }}</h2>
+<mat-card *ngIf="episode$ | async as episode">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>{{ episode.name }}</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
     <p>Fecha de emisión: {{ episode.air_date }}</p>
     <p>Episodio: {{ episode.episode }}</p>
-  </div>
-  
-  <ng-template #loading>Cargando...</ng-template>
-  
+  </mat-card-content>
+</mat-card>

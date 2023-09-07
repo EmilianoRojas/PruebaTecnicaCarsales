@@ -20,10 +20,15 @@ export class EpisodeDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.route.params.subscribe(params  => {
       if (params['id']) {
-        const episodeId = params['id']; // Obtén el ID del episodio de los parámetros de la URL
+        const episodeId = params['id']; 
         this.episode$ = this.rickAndMortyService.getEpisode(episodeId);
+
+        this.episode$.subscribe((episode: Episode) => {
+          console.log(episode);
+        });
       } 
     });
     

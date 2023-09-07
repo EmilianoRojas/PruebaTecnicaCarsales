@@ -10,13 +10,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { EpisodeTableComponent } from './components/episode-table/episode-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     EpisodeListComponent,
     EpisodeDetailComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    EpisodeTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +30,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatDialogModule,
     MatToolbarModule,
-    BrowserAnimationsModule
+    MatTableModule,
+    MatCardModule,
+    MatIconModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

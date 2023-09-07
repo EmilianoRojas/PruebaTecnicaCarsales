@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Episodes</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="episodes">
+        <!-- Columna de Nombre -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Episode Name</th>
+          <td mat-cell *matCellDef="let episode" [routerLink]="['/episodes', episode.id]">{{ episode.name }}</td>
+        </ng-container>
+      
+        <!-- Columna de Fecha -->
+        <ng-container matColumnDef="air_date">
+          <th mat-header-cell *matHeaderCellDef>Air Date</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.air_date }}</td>
+        </ng-container>
+      
+        <!-- Columna de Temporada -->
+        <ng-container matColumnDef="season">
+          <th mat-header-cell *matHeaderCellDef>Season</th>
+          <td mat-cell *matCellDef="let episode">{{ episode.episode }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Details</th>
+          <td mat-cell *matCellDef="let episode">
+            <a [routerLink]="['/episode', episode.id]">
+              <mat-icon>visibility</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+      
+        <!-- Define las columnas -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+  

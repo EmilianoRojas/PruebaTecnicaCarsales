@@ -1,8 +1,1 @@
-<div class="episode-list">
-    <h2>Lista de Episodios</h2>
-    <ul>
-      <li *ngFor="let episode of episodes$ | async">
-        <a [routerLink]="['/episode', episode.id]">{{ episode.name }}</a>
-      </li>
-    </ul>
-</div>
+<app-episode-table [episodes]="episodes$"></app-episode-table>
