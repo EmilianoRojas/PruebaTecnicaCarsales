@@ -17,6 +17,11 @@ export class RickAndMortyService {
     return this.http.get<EpisodeResponse>(`${this.apiUrl}episode?page=${page}`);
   }
 
+  getEpisodesByName(name: string): Observable<EpisodeResponse> {
+    const url = `${this.apiUrl}episode?name=${name}`;
+    return this.http.get<EpisodeResponse>(url);
+  }
+
   getEpisode(id: number): Observable<Episode> {
     return this.http.get<Episode>(`${this.apiUrl}episode/${id}`);
   }

@@ -1,3 +1,10 @@
+<div class="busqueda">
+  <mat-form-field class="busqueda-input">
+    <mat-label>Seach episodes by name</mat-label>
+    <input matInput placeholder="Rick, space..." [(ngModel)]="nameFilter">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="searchEpisodes()">Search</button>
+</div>
 <app-episode-table [episodes]="episodes$"></app-episode-table>
 <mat-paginator
   [length]="episodeResponse?.info?.count"

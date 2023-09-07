@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable, map, of, catchError } from 'rxjs';
+import { Observable, map, of, catchError, debounceTime, distinctUntilChanged } from 'rxjs';
 import { EpisodeResponse } from 'src/app/models/episode-response.model';
 import { Episode } from 'src/app/models/episode.model';
 import { RickAndMortyService } from 'src/app/services/rick-and-morty.service';
@@ -16,6 +16,8 @@ export class EpisodeListComponent implements OnInit {
   episodeResponse: EpisodeResponse | null = null;
   currentPage = 1;
   pageSize = 20; 
+  nameFilter = '';
+
 
   constructor(private rickAndMortyService: RickAndMortyService) {}
 
@@ -40,4 +42,19 @@ export class EpisodeListComponent implements OnInit {
     this.loadEpisodes();
   }
 
+  searchEpisodes() {
+    if (this.nameFilter.trim() !== '') {
+      this.episodes$ = this.rickAndMortyService.getEpisodesByName(this.nameFilter)
+      .pipe(
+        map((response: EpisodeResponse) => {
+          this.episodeResponse = response;
+          return response.results;
+        }),
+        catchError(() => of([]))
+      );
+    } else {
+      // Si el campo de búsqueda está vacío, cargar todos los episodios
+      this.loadEpisodes();
+    }
+  }
 }
