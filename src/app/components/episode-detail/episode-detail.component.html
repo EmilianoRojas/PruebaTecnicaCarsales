@@ -19,7 +19,7 @@
   <div class="character-container">
     <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
     <mat-card *ngFor="let character of (characters$ | async)" class="character">
-      <img [src]="character.image" alt="{{ character.name }} Image" >
+      <img [src]="character.image" alt="{{ character.name }} Image"  width="200">
       <mat-card-title>{{ character.name }}</mat-card-title>
     </mat-card>
   </div>

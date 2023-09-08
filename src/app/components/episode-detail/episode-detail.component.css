@@ -7,6 +7,7 @@ mat-card{
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  overflow-y: auto;
 }
 
 .character-container {
